@@ -1,0 +1,27 @@
+<mat-toolbar color="primary">
+    <span>Contact Management</span>
+    <span class="example-spacer"></span>
+    <button mat-raised-button color="accent" class="mr-2" (click)="add()">Add Contact</button>
+    <button mat-raised-button color="warn" (click)="logout()">Logout</button>
+  </mat-toolbar>
+  <div class="container">
+    <h1 class="text-center">Welcome <span>{{user.name}}</span></h1>
+  </div>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">name</th>
+        <th scope="col">phone</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let con of contacts">
+        <th scope="row">{{con.cid}}</th>
+        <td>{{con.name}}</td>
+        <td>{{con.phone}}</td>
+      </tr>
+      
+    </tbody>
+  </table>

@@ -1,0 +1,20 @@
+<div class="container card text-center">
+    <h1>Add Contacts Here</h1>
+    <form>
+        <mat-form-field appearance="outline" style="width: 100%;">
+            <mat-label>Name</mat-label>
+            <input [(ngModel)]="contact.name" name="contact.name" matInput placeholder="Enter name">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" style="width: 100%;">
+            <mat-label>Phone</mat-label>
+            <input [(ngModel)]="contact.phone" name="contact.phone" matInput placeholder="Enter phone">
+          </mat-form-field>
+
+          
+    </form>
+    <div mat-dialog-action [align]="'end'" class="mb-2">
+        <button mat-raised-button color="warn" mat-dialog-close>close</button>
+        <button style="margin-left: 8px;" mat-raised-button color="primary" (click)="addContact()">Add contact</button>
+      </div>
+</div>

@@ -1,0 +1,21 @@
+<div class="container card text-center">
+    <h1>Login here</h1>
+    <form>
+        <mat-form-field appearance="outline" style="width: 100%;">
+            <mat-label>Username</mat-label>
+            <input [(ngModel)]="username" name="username" matInput placeholder="Enter email">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" style="width: 100%;">
+            <mat-label>Password</mat-label>
+            <input [(ngModel)]="password" name="password" matInput placeholder="Enter password">
+          </mat-form-field>
+
+          
+    </form>
+    <div mat-dialog-action [align]="'end'" class="mb-2">
+        <button mat-raised-button color="warn" mat-dialog-close>close</button>
+        <button style="margin-left: 8px;" mat-raised-button color="primary" (click)="handleLogin()">Login</button>
+      </div>
+
+</div>
