@@ -5,6 +5,8 @@ package com.deevyanshu.controller;
 import java.util.Collections;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -34,6 +36,8 @@ public class ContactController {
 	
 	public Authenticate mes=new Authenticate();
 	
+	HttpHeaders headers=new HttpHeaders();
+	
 	
 	/*@PostMapping("/message")
 	public Authenticate message(@RequestBody Authenticate auth)
@@ -46,21 +50,39 @@ public class ContactController {
 	public Authenticate message(@RequestBody Authenticate auth)
 	{
 		BeanUtils.copyProperties(auth, mes);
+		if(mes!=null)
+		{
+			headers.set("Authorization", mes.getMessage());
+		}
 		return auth;
 	}
 	
 	
 	@GetMapping("/all/{uid}")
-	public ResponseEntity<List<Contact>> getAll(@PathVariable("uid")int uid)
+	public ResponseEntity<List<Contact>> getAll(@PathVariable("uid")int uid,HttpServletResponse response)
 	{
+		/*
 		if(mes.getMessage().equals("Authenticated"))
 		{
 			return ResponseEntity.ok(service.getAll(uid));
 		}else
 		{
 			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+		}*/
+		
+		
+		if(response.getHeader("Authorization")==null)
+		{
+			response.setHeader("Authorization", mes.getMessage());
 		}
 		
+			if(response.getHeader("Authorization")!=null)
+			{
+				return ResponseEntity.ok().headers(headers).body(service.getAll(uid));
+			}else
+			{
+				return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+			}
 		
 	}
 	
